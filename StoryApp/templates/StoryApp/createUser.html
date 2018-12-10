@@ -1,0 +1,17 @@
+{% extends "StoryApp/base.html" %}
+
+{% block maininfo%}
+<h4>Add a User</h4>
+<form method="POST" class="post-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+</form>
+{% endblock %}
+
+
+{% block navi %}
+<li class="logout" align="right">
+    <a href="{% url 'login' %}" class="btn btn-link">Login</a>
+</li>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "StoryApp/base.html" %}
+
+
+{% block navi %}
+
+    <li class="logout" align="right">
+        <a href="{% url 'logout' %}" class="btn btn-link">Logout</a>
+    </li>
+
+{% endblock %}
+
+
+{% block footer %}
+
+{% if user.is_authenticated %}
+{% if user.username == 'admin' %}
+<div align="center">
+    <footer>
+        <h5>
+            <a href="{% url 'admin:index' %}" class="btn btn-link" target="_blank">Admin Site</a>
+        </h5>
+    </footer>
+</div>
+{% elif user.username == 'student' %}
+<div align="center">
+    <footer>
+        <h5>
+            <a href="{% url 'admin:index' %}" class="btn btn-link" target="_blank">Admin Site</a>
+        </h5>
+    </footer>
+</div>
+{% else %}
+<h5> || A NightxGamer Website || </h5>
+{% endif %}
+{% endif %}
+{% endblock %}

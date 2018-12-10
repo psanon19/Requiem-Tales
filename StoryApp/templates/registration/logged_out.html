@@ -1,0 +1,55 @@
+{% extends "StoryApp/base.html" %}
+
+
+{% block navi %}
+
+
+        <li class="logout" align="right">
+            <a href="{% url 'login' %}" class="btn btn-link">Login</a>
+        </li>
+        <li class="logout" align="right">
+            <a href="{% url 'createUser' %}" class="btn btn-link">Create User</a>
+        </li>
+{% endblock %}
+
+{% block maininfo %}
+    {% if form_list %}
+
+    <ul>
+        {% for eachItem in form_list %}
+        <li>{{ eachItem.blog_title }}</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <h1 align="center">Nothing Here</h1>
+    {% endif %}
+{% endblock %}
+
+{% block footer %}
+
+{% if user.is_authenticated %}
+{% if user.username == 'admin' %}
+<div align="center">
+    <footer>
+        <h5>
+            <a href="{% url 'index' %}" class="btn btn-link">All Accounts</a>
+            <a href="{% url 'userindex' %}" class="btn btn-link">My Accounts</a>
+            <a href="{% url 'admin:index' %}" class="btn btn-link" target="_blank">Admin Site</a>
+        </h5>
+    </footer>
+</div>
+{% elif user.username == 'student' %}
+<div align="center">
+    <footer>
+        <h5>
+            <a href="{% url 'index' %}" class="btn btn-link">All Accounts</a>
+            <a href="{% url 'userindex' %}" class="btn btn-link">My Accounts</a>
+            <a href="{% url 'admin:index' %}" class="btn btn-link" target="_blank">Admin Site</a>
+        </h5>
+    </footer>
+</div>
+{% else %}
+<h5> || A NightxGamer Website || </h5>
+{% endif %}
+{% endif %}
+{% endblock %}
