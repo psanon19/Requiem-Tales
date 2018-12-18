@@ -45,7 +45,7 @@ def createUser(request):
 
 @login_required
 def post_detail(request, pk):
-    post = get_object_or_404(CharacterClassesModel, pk=pk)
-    transactions = (post.transactionmodel_set.all())
-    context = {'post': post, 'transactions': transactions}
+    post = get_object_or_404(PlayerCharacterModel, pk=pk)
+    classInfo = (post.CharacterClassesModel_set.all())
+    context = {'post': post, 'classInfo': classInfo}
     return render(request, 'StoryApp/detail.html', context)
