@@ -4,18 +4,31 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 
 
+class CharacterClassesModel(models.Model):
+    class_name = models.CharField(max_length=200,)
+    hit_points = models.IntegerField(default=0)
+    strength = models.IntegerField(default=0)
+    magic = models.IntegerField(default=0)
+    skill = models.IntegerField(default=0)
+    speed = models.IntegerField(default=0)
+    faith = models.IntegerField(default=0)
+    resistance = models.IntegerField(default=0)
+    defence = models.IntegerField(default=0)
+    constitution = models.IntegerField(default=0)
+    description = models.TextField(max_length=1000,null=True)
+
+    def __str__(self):
+        return self.class_name
+
 
 class PlayerCharacterModel(models.Model):
     full_name = models.CharField(max_length=50, null=True)
-    current_health = models.IntegerField(default=0,)
+    last_name = models.CharField(max_length=50, null=True)
+    password = models.CharField(max_length=257, null=True)
+    email = models.EmailField(max_length=200, null=True)
     current_gold = models.IntegerField(default=0,)
-    current_strength = models.IntegerField(default=0,)
     username = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True,)
-
-    #
-    # def publish(self):
-    #     self.published_date = timezone.now()
-    #     self.save()
+    classFK = models.ForeignKey(CharacterClassesModel, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
         return self.full_name

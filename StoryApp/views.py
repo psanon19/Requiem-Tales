@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from .models import PlayerCharacterModel
+from .models import PlayerCharacterModel, CharacterClassesModel
 from .forms import PlayerCharacterForm, UserForm
 
 @login_required
@@ -9,6 +9,19 @@ def index(request):
     form_list = PlayerCharacterModel.objects.all()
     context = {'form_list': form_list}
     return render(request, 'StoryApp/index.html', context)
+
+
+def post_new(request):
+    if request.method == 'POST':
+        form = PlayerCharacterForm(request.POST)
+        if form.is_valid():
+            newpost = form.save(commit=False)
+            newpost.username = request.user
+            newpost.save()
+            return redirect('userindex')
+    else:
+        form = PlayerCharacterForm()
+    return render(request,'StoryApp/new.html', {'form': form})
 
 
 @login_required
@@ -21,12 +34,18 @@ def userindex(request):
 
 def createUser(request):
     if request.method == 'POST':
-        form = UserForm(request.POST)
-        if form.is_valid():
-            User.objects.create_user(request.POST.get("first_name"), request.POST.get("email"),
+        User.objects.create_user(request.POST.get("first_name"), request.POST.get("email"),
                                      request.POST.get("password"), )
-            form.save()
-            return redirect('userindex')
+
+        return redirect('userindex')
     else:
         form = UserForm()
         return render(request, 'StoryApp/createUser.html', {'form': form})
+
+
+@login_required
+def post_detail(request, pk):
+    post = get_object_or_404(CharacterClassesModel, pk=pk)
+    transactions = (post.transactionmodel_set.all())
+    context = {'post': post, 'transactions': transactions}
+    return render(request, 'StoryApp/detail.html', context)
