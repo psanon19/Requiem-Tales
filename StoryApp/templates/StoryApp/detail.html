@@ -17,6 +17,8 @@
     <a class="btn btn-primary btn-lg btn-block" href="{# url 'withdraw' pk=post.pk #}">Withdraw</a>
     </b></div>
     <h1>Username: {{ post.full_name }}</h1>
+    <h1>Classname: {{ post.classFK }}</h1>
+    <h1>HP: {{ post.classFK.hit_points }}</h1>
     <div class="row">
         <div class="column">
             <p><h3>Checking Balance: $ </h3></p>
