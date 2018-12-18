@@ -9,41 +9,48 @@
     {% endif %}
 
     <!--{# if post.username == user.get_username #}-->
-    <div align="center"><b>
-    <a class="btn btn-primary btn-lg btn-block" href="{# url 'edit' pk=post.pk #}">Edit Info</a>
-        <br/>
-    <a class="btn btn-primary btn-lg btn-block" href="{# url 'deposit' pk=post.pk #}">Deposit</a>
-        <br/>
-    <a class="btn btn-primary btn-lg btn-block" href="{# url 'withdraw' pk=post.pk #}">Withdraw</a>
-    </b></div>
-    <h1>Username: {{ post.full_name }}</h1>
-    <h1>Classname: {{ post.classFK }}</h1>
-    <h1>HP: {{ post.classFK.hit_points }}</h1>
+
+    <h1><b>Username: {{ post.full_name }}</b></h1>
+    <h1><b>Classname: {{ post.classFK }}</b></h1>
+    <h1><b>HP: {{ post.classFK.hit_points }}</b></h1>
     <div class="row">
         <div class="column">
-            <p><h3>Checking Balance: $ </h3></p>
+            <p><h3><b>:Attributes:</b></h3></p>
+            <p>Strength: {{post.classFK.strength}}</p>
+            <p>Magic: {{post.classFK.magic}}</p>
+            <p>Skill: {{post.classFK.skill}}</p>
+            <p>Speed: {{post.classFK.speed}}</p>
+            <p>Faith: {{post.classFK.faith}}</p>
+            <p>Resistance: {{post.classFK.resistance}}</p>
+            <p>Defence: {{post.classFK.defence}}</p>
+            <p>Constitution: {{post.classFK.constitution}}</p>
+            <p>Move: {{post.classFK.movement}}</p>
         </div>
 
         <div class="column">
-            <p><h3>Savings Balance: $ </h3></p>
+            <p><h3><b>:Info:</b></h3></p>
+            <p>{{post.classFK.description}}</p>
         </div>
     </div>
     <br/>
-    <div class="row">
-    <div class="column">
-    <h2>Deposits:</h2>
-
-
-    </div>
-    <br/>
-    <div class="column">
-    <h2>Withdraws:</h2>
-
+    <div align="center">
+    <div>
+    <h2><b>:Current Gold:</b></h2>
+        <p><h3>{{post.current_gold}}</h3></p>
 
     </div>
+
     </div>
 </div>
 
+
+<div align="center"><b>
+    <a class="btn btn-primary btn-lg btn-block" href="{# url 'edit' pk=post.pk #}">Edit Info</a>
+    <br/>
+    <a class="btn btn-primary btn-lg btn-block" href="{# url 'deposit' pk=post.pk #}">Deposit</a>
+    <br/>
+    <a class="btn btn-primary btn-lg btn-block" href="{# url 'withdraw' pk=post.pk #}">Withdraw</a>
+</b></div>
 {% endblock %}
 
 

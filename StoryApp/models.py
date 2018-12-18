@@ -15,6 +15,7 @@ class CharacterClassesModel(models.Model):
     resistance = models.IntegerField(default=0)
     defence = models.IntegerField(default=0)
     constitution = models.IntegerField(default=0)
+    movement = models.IntegerField(default=0, null=True)
     description = models.TextField(max_length=1000,null=True)
 
     def __str__(self):
