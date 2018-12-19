@@ -12,6 +12,7 @@ def index(request):
 
 
 def post_new(request):
+    classForm = CharacterClassesModel
     if request.method == 'POST':
         form = PlayerCharacterForm(request.POST)
         if form.is_valid():

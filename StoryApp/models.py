@@ -24,11 +24,17 @@ class CharacterClassesModel(models.Model):
 
 class PlayerCharacterModel(models.Model):
     full_name = models.CharField(max_length=50, null=True)
-    last_name = models.CharField(max_length=50, null=True)
-    password = models.CharField(max_length=257, null=True)
-    email = models.EmailField(max_length=200, null=True)
     current_gold = models.IntegerField(default=0,)
     username = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True,)
+    strength = models.IntegerField(default=0)
+    magic = models.IntegerField(default=0)
+    skill = models.IntegerField(default=0)
+    speed = models.IntegerField(default=0)
+    faith = models.IntegerField(default=0)
+    resistance = models.IntegerField(default=0)
+    defence = models.IntegerField(default=0)
+    constitution = models.IntegerField(default=0)
+    movement = models.IntegerField(default=0)
     classFK = models.ForeignKey(CharacterClassesModel, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
